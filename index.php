@@ -43,7 +43,8 @@
 
 				try {
 					$inc = 3;
-					$stmt = $conn->prepare("SELECT *, products.name AS proname FROM products INNER JOIN category ON products.category_id = category.id ORDER BY products.id DESC LIMIT 8");
+					//$stmt = $conn->prepare("SELECT *, products.name AS proname FROM products INNER JOIN category ON products.category_id = category.id ORDER BY products.id DESC LIMIT 8");
+					$stmt = $conn->prepare("SELECT *, products.name AS proname FROM featured_products INNER JOIN products ON featured_products.product_id = products.id INNER JOIN category ON products.category_id = category.id ORDER BY products.id DESC LIMIT 8");
 					$stmt->execute();
 					foreach ($stmt as $row) {
 						$image = (!empty($row['photo'])) ? 'images/' . $row['photo'] : 'images/noimage.jpg';
