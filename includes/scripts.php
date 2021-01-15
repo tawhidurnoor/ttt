@@ -24,9 +24,12 @@
 <!-- CK Editor -->
 <script src="bower_components/ckeditor/ckeditor.js"></script>
 <script>
-$(function() {
+$(document).ready(function() {
     // Datatable
     $('#example1').DataTable()
+} );
+
+$(function() {
     //CK Editor
     CKEDITOR.replace('editor1')
 });
