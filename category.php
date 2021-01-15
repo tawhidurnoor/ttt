@@ -1,19 +1,23 @@
 <?php include 'includes/session.php'; ?>
 <?php
-$slug = $_GET['category'];
 
-$conn = $pdo->open();
+if (isset($_GET['category'])) {
+    $slug = $_GET['category'];
 
-try {
-	$stmt = $conn->prepare("SELECT * FROM category WHERE cat_slug = :slug");
-	$stmt->execute(['slug' => $slug]);
-	$cat = $stmt->fetch();
-	$catid = $cat['id'];
-} catch (PDOException $e) {
-	echo "There is some problem in connection: " . $e->getMessage();
+    $conn = $pdo->open();
+
+    try {
+        $stmt = $conn->prepare("SELECT * FROM category WHERE cat_slug = :slug");
+        $stmt->execute(['slug' => $slug]);
+        $cat = $stmt->fetch();
+        $catid = $cat['id'];
+    } catch (PDOException $e) {
+        echo "There is some problem in connection: " . $e->getMessage();
+    }
+
+    $pdo->close();
 }
 
-$pdo->close();
 
 ?>
 <?php include 'includes/header.php'; ?>
@@ -35,28 +39,36 @@ $pdo->close();
 
                                         <?php
 
-										$conn = $pdo->open();
+                                        $conn = $pdo->open();
 
-										try {
-											$stmt1 = $conn->prepare("SELECT * FROM products WHERE category_id = :catid ORDER BY id DESC LIMIT 5");
-											$stmt1->execute(['catid' => $catid]);
-											foreach ($stmt1 as $row1) {
-												$image1 = (!empty($row1['photo'])) ? 'images/' . $row1['photo'] : 'images/noimage.jpg';
-												echo '<a href="product.php?product=' . $row1['slug'] . '" class="latest-product__item">';
-												echo '	<div class="latest-product__item__pic">';
-												echo '		<img src="' . $image1 . '" alt="">';
-												echo '	</div>';
-												echo '	<div class="latest-product__item__text">';
-												echo '		<h6>' . $row1['name'] . '</h6>';
-												echo '		<span>৳' . number_format($row1['price'], 2) . '</span>';
-												echo '	</div>';
-												echo '</a>';
-											}
-										} catch (PDOException $e) {
-											echo "There is some problem in connection: " . $e->getMessage();
-										}
+                                        try {
 
-										?>
+                                            if (isset($_GET['category'])) {
+                                                $stmt1 = $conn->prepare("SELECT * FROM products WHERE category_id = :catid ORDER BY id DESC LIMIT 5");
+                                                $stmt1->execute(['catid' => $catid]);
+                                            } else {
+                                                $stmt1 = $conn->prepare("SELECT * FROM products ORDER BY id DESC LIMIT 5");
+                                                $stmt1->execute();
+                                            }
+
+
+                                            foreach ($stmt1 as $row1) {
+                                                $image1 = (!empty($row1['photo'])) ? 'images/' . $row1['photo'] : 'images/noimage.jpg';
+                                                echo '<a href="product.php?product=' . $row1['slug'] . '" class="latest-product__item">';
+                                                echo '	<div class="latest-product__item__pic">';
+                                                echo '		<img src="' . $image1 . '" alt="">';
+                                                echo '	</div>';
+                                                echo '	<div class="latest-product__item__text">';
+                                                echo '		<h6>' . $row1['name'] . '</h6>';
+                                                echo '		<span>৳' . number_format($row1['price'], 2) . '</span>';
+                                                echo '	</div>';
+                                                echo '</a>';
+                                            }
+                                        } catch (PDOException $e) {
+                                            echo "There is some problem in connection: " . $e->getMessage();
+                                        }
+
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -95,38 +107,46 @@ $pdo->close();
 
                             <?php
 
-							$conn = $pdo->open();
+                            $conn = $pdo->open();
 
-							try {
-								$inc = 3;
-								$stmt = $conn->prepare("SELECT * FROM products WHERE category_id = :catid");
-								$stmt->execute(['catid' => $catid]);
-								foreach ($stmt as $row) {
-									$image = (!empty($row['photo'])) ? 'images/' . $row['photo'] : 'images/noimage.jpg';
+                            try {
+                                $inc = 3;
 
-									echo '<div class="col-lg-4 col-md-6 col-sm-6">';
-									echo '	<div class="product__item">';
-									echo '		<div class="product__item__pic set-bg" data-setbg="' . $image . '">';
-									echo '			<ul class="product__item__pic__hover">';
-									echo '				<li><a href="#"><i class="fa fa-heart"></i></a></li>';
-									echo '				<li><a href="#"><i class="fa fa-retweet"></i></a></li>';
-									echo '				<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>';
-									echo '			</ul>';
-									echo '		</div>';
-									echo '		<div class="product__item__text">';
-									echo '			<h6><a href="product.php?product=' . $row['slug'] . '">' . $row['name'] . '</a></h6>';
-									echo '			<h5>৳' . number_format($row['price'], 2) . '</h5>';
-									echo '		</div>';
-									echo '	</div>';
-									echo '</div>';
-								}
-							} catch (PDOException $e) {
-								echo "There is some problem in connection: " . $e->getMessage();
-							}
+                                if (isset($_GET['category'])) {
+                                    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = :catid");
+                                    $stmt->execute(['catid' => $catid]);
+                                } else {
+                                    $stmt = $conn->prepare("SELECT * FROM products");
+                                    $stmt->execute();
+                                }
 
-							$pdo->close();
 
-							?>
+                                foreach ($stmt as $row) {
+                                    $image = (!empty($row['photo'])) ? 'images/' . $row['photo'] : 'images/noimage.jpg';
+
+                                    echo '<div class="col-lg-4 col-md-6 col-sm-6">';
+                                    echo '	<div class="product__item">';
+                                    echo '		<div class="product__item__pic set-bg" data-setbg="' . $image . '">';
+                                    echo '			<ul class="product__item__pic__hover">';
+                                    echo '				<li><a href="#"><i class="fa fa-heart"></i></a></li>';
+                                    echo '				<li><a href="#"><i class="fa fa-retweet"></i></a></li>';
+                                    echo '				<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>';
+                                    echo '			</ul>';
+                                    echo '		</div>';
+                                    echo '		<div class="product__item__text">';
+                                    echo '			<h6><a href="product.php?product=' . $row['slug'] . '">' . $row['name'] . '</a></h6>';
+                                    echo '			<h5>৳' . number_format($row['price'], 2) . '</h5>';
+                                    echo '		</div>';
+                                    echo '	</div>';
+                                    echo '</div>';
+                                }
+                            } catch (PDOException $e) {
+                                echo "There is some problem in connection: " . $e->getMessage();
+                            }
+
+                            $pdo->close();
+
+                            ?>
 
                         </div>
                         <div class="product__pagination">
