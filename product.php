@@ -43,7 +43,7 @@ if ($product['date_view'] == $now) {
 
         <style>
             .link_style {
-                color: #212529 !important;
+                color: #3e5372 !important;
             }
         </style>
 
@@ -94,7 +94,7 @@ if ($product['date_view'] == $now) {
 
                             <ul>
                                 <li><b>Availability</b> <span>In Stock</span></li>
-                                <li><b>Shipping</b> <span>03 days shipping. <samp>Free pickup today</samp></span>
+                                <li><b>Shipping</b> <span>Max 07 days shipping. <samp>Free pickup from office</samp></span>
                                 </li>
                             </ul>
 
@@ -108,8 +108,8 @@ if ($product['date_view'] == $now) {
                                 </div>
                                 <input type="hidden" value="<?php echo $product['prodid']; ?>" name="id">
                                 <button type="submit" class="primary-btn" style="border: 0px;"><i class="fa fa-shopping-cart"></i> ADD TO
-                                    CARD</button>
-                                <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                                    CART</button>
+                                <!--<a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>-->
                             </form>
 
                         </div>
@@ -177,9 +177,9 @@ if ($product['date_view'] == $now) {
                             echo '    <div class="product__item">';
                             echo '        <div class="product__item__pic set-bg" data-setbg="' . $image . '">';
                             echo '            <ul class="product__item__pic__hover">';
-                            echo '                <li><a href="#"><i class="fa fa-heart"></i></a></li>';
+                            echo '                <!-- <li><a href="#"><i class="fa fa-heart"></i></a></li>';
                             echo '                <li><a href="#"><i class="fa fa-retweet"></i></a></li>';
-                            echo '                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>';
+                            echo '                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li> -->';
                             echo '            </ul>';
                             echo '        </div>';
                             echo '        <div class="product__item__text">';

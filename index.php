@@ -49,19 +49,17 @@
 					foreach ($stmt as $row) {
 						$image = (!empty($row['photo'])) ? 'images/' . $row['photo'] : 'images/noimage.jpg';
 						echo '<div class="col-lg-3 col-md-4 col-sm-6 mix ' . $row['cat_slug'] . '">';
-						echo '	<div class="featured__item">';
-						echo '		<div class="featured__item__pic set-bg" data-setbg="' . $image . '">';
-						echo '			<ul class="featured__item__pic__hover">';
-						echo '				<li><a href="#"><i class="fa fa-heart"></i></a></li>';
-						echo '				<li><a href="#"><i class="fa fa-retweet"></i></a></li>';
-						echo '				<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>';
-						echo '			</ul>';
-						echo '		</div>';
-						echo '		<div class="featured__item__text">';
-						echo '			<h6><a href="product.php?product=' . $row['slug'] . '">' . $row['proname'] . '</a></h6>';
-						echo '			<h5>৳ ' . number_format($row['price'], 2) . '</h5>';
-						echo '		</div>';
-						echo '	</div>';
+						echo '	 <div class="featured__item">';
+						echo '	 	<div class="featured__item__pic set-bg" data-setbg="' . $image . '">';
+						echo '	 		<ul class="featured__item__pic__hover">';
+						echo '	 			<!--<li><button type="submit"><i class="fa fa-shopping-cart"></i></button></li>-->';
+						echo '	 		</ul>';
+						echo '	 	</div>';
+						echo '	 	<div class="featured__item__text">';
+						echo '	 		<h6><a href="product.php?product=' . $row['slug'] . '">' . $row['proname'] . '</a></h6>';
+						echo '	 		<h5>৳ ' . number_format($row['price'], 2) . '</h5>';
+						echo '	 	</div>';
+						echo '	 </div>';
 						echo '</div>';
 					}
 				} catch (PDOException $e) {
