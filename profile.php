@@ -68,47 +68,48 @@ if (!isset($_SESSION['user'])) {
 									<h4 class="card-title m-t-10">Order History</h4>
 								</div>
 								<div class="card-body">
-									<table class="table table-striped table-bordered" style="width:100%" id="example1">
-										<thead>
-											<th class="hidden"></th>
-											<th>Date</th>
-											<th>Transaction#</th>
-											<th>Amount</th>
-											<th>Full Details</th>
-										</thead>
-										<tbody>
-											<?php
-											$conn = $pdo->open();
+									<div class="shoping__cart__table">
+										<table class="table-hover table-responsive-sm" id="example">
+											<thead>
+												<th>Date</th>
+												<th>Transaction#</th>
+												<th>Amount</th>
+												<th>Full Details</th>
+											</thead>
+											<tbody>
+												<?php
+												$conn = $pdo->open();
 
-											try {
-												$stmt = $conn->prepare("SELECT * FROM sales WHERE user_id=:user_id ORDER BY sales_date DESC");
-												$stmt->execute(['user_id' => $user['id']]);
-												foreach ($stmt as $row) {
-													$stmt2 = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id WHERE sales_id=:id");
-													$stmt2->execute(['id' => $row['id']]);
-													$total = 0;
-													foreach ($stmt2 as $row2) {
-														$subtotal = $row2['price'] * $row2['quantity'];
-														$total += $subtotal;
-													}
-													echo "
+												try {
+													$stmt = $conn->prepare("SELECT * FROM sales WHERE user_id=:user_id ORDER BY sales_date DESC");
+													$stmt->execute(['user_id' => $user['id']]);
+													foreach ($stmt as $row) {
+														$stmt2 = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id WHERE sales_id=:id");
+														$stmt2->execute(['id' => $row['id']]);
+														$total = 0;
+														foreach ($stmt2 as $row2) {
+															$subtotal = $row2['price'] * $row2['quantity'];
+															$total += $subtotal;
+														}
+														echo "
 	        									<tr>
-	        										<td class='hidden'></td>
 	        										<td>" . date('M d, Y', strtotime($row['sales_date'])) . "</td>
 	        										<td>" . $row['pay_id'] . "</td>
 	        										<td>&#36; " . number_format($total, 2) . "</td>
 	        										<td><button class='btn btn-sm btn-flat btn-info transact' data-id='" . $row['id'] . "'><i class='fa fa-search'></i> View</button></td>
 	        									</tr>
 	        								";
+													}
+												} catch (PDOException $e) {
+													echo "There is some problem in connection: " . $e->getMessage();
 												}
-											} catch (PDOException $e) {
-												echo "There is some problem in connection: " . $e->getMessage();
-											}
 
-											$pdo->close();
-											?>
-										</tbody>
-									</table>
+												$pdo->close();
+												?>
+											</tbody>
+										</table>
+									</div>
+
 								</div>
 							</div>
 						</div>
@@ -161,6 +162,17 @@ if (!isset($_SESSION['user'])) {
 			$("#transaction").on("hidden.bs.modal", function() {
 				$('.prepend_items').remove();
 			});
+		});
+	</script>
+
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable();
 		});
 	</script>
 </body>

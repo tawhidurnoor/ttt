@@ -66,9 +66,9 @@ $(function() {
                 $('#callout').show();
                 $('.message').html(response.message);
                 if (response.error) {
-                    $('#callout').removeClass('callout-success').addClass('callout-danger');
+                    //$('#callout').removeClass('callout-success').addClass('callout-danger');
                 } else {
-                    $('#callout').removeClass('callout-danger').addClass('callout-success');
+                    //$('#callout').removeClass('callout-danger').addClass('callout-success');
                     //sweet alert starts
                     Swal.fire({
                         position: 'center',

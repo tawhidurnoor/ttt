@@ -16,6 +16,7 @@ if (isset($_SESSION['user'])) {
 		try {
 			$stmt = $conn->prepare("INSERT INTO cart (user_id, product_id, quantity) VALUES (:user_id, :product_id, :quantity)");
 			$stmt->execute(['user_id' => $user['id'], 'product_id' => $id, 'quantity' => $quantity]);
+			//message directly managed in scripts.php
 			//$output['message'] = 'Item added to cart';
 		} catch (PDOException $e) {
 			$output['error'] = true;
@@ -35,6 +36,7 @@ if (isset($_SESSION['user'])) {
 						</script>";
 	}
 } else {
+
 	if (!isset($_SESSION['cart'])) {
 		$_SESSION['cart'] = array();
 	}
@@ -49,20 +51,21 @@ if (isset($_SESSION['user'])) {
 		$output['error'] = true;
 		//$output['message'] = 'Product already in cart';
 		$output['message'] = "<script>
-									Swal.fire({
-									position: 'center',
-									icon: 'error',
-									title: 'Product already in the cart.',
-									showConfirmButton: false,
-									timer: 1500
-								})
-						</script>";
+										Swal.fire({
+										position: 'center',
+										icon: 'error',
+										title: 'Product already in the cart.',
+										showConfirmButton: false,
+										timer: 1500
+									})
+							</script>";
 	} else {
 		$data['productid'] = $id;
 		$data['quantity'] = $quantity;
 
 		if (array_push($_SESSION['cart'], $data)) {
 			//$output['message'] = 'Item added to cart';
+			//message directly managed in scripts.php
 		} else {
 			$output['error'] = true;
 			$output['message'] = "<script>
