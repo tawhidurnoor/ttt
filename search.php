@@ -22,8 +22,10 @@
 							$row = $stmt->fetch();
 							if ($row['numrows'] < 1) {
 								echo '<div class="col-lg-12 col-md-12 col-sm-12"><h4>No results found for <i>' . $_POST['keyword'] . '</i></h4></div>';
+								echo '</br></br></br>';
 							} else {
 								echo '<div class="col-lg-12 col-md-12 col-sm-12"><h4>Search results for <i>' . $_POST['keyword'] . '</i></h4></div>';
+								echo '</br></br></br>';
 								try {
 									$inc = 3;
 									$stmt = $conn->prepare("SELECT * FROM products WHERE name LIKE :keyword");
@@ -58,12 +60,14 @@
 							?>
 
                         </div>
+						<!--
                         <div class="product__pagination">
                             <a href="#">1</a>
                             <a href="#">2</a>
                             <a href="#">3</a>
                             <a href="#"><i class="fa fa-long-arrow-right"></i></a>
                         </div>
+						-->
                     </div>
                 </div>
             </div>
