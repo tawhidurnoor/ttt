@@ -1,4 +1,5 @@
 <?php include 'includes/session.php'; ?>
+<?php include 'includes/connection.php'; ?>
 <?php
 
 if (isset($_GET['category'])) {
@@ -109,14 +110,48 @@ if (isset($_GET['category'])) {
 
                             $conn = $pdo->open();
 
+                            // define how many results you want per page
+                            $results_per_page = 15;
+
                             try {
                                 $inc = 3;
 
                                 if (isset($_GET['category'])) {
-                                    $stmt = $conn->prepare("SELECT * FROM products WHERE category_id = :catid");
+                                    //$stmt = $conn->prepare("SELECT * FROM products WHERE category_id = :catid");
+                                    //$stmt->execute(['catid' => $catid]);
+                                    $sql = 'SELECT * FROM products WHERE category_id = ' . $catid;
+                                    $result = mysqli_query($connection, $sql);
+
+                                    // find out the number of results stored in database
+                                    $number_of_results = mysqli_num_rows($result);
+                                } else {
+                                    //$stmt = $conn->prepare("SELECT * FROM products");
+                                    //$stmt->execute();
+                                    $sql = 'SELECT * FROM products';
+                                    $result = mysqli_query($connection, $sql);
+                                    // find out the number of results stored in database
+                                    $number_of_results = mysqli_num_rows($result);
+                                }
+
+                                // determine number of total pages available
+                                $number_of_pages = ceil($number_of_results / $results_per_page);
+
+                                // determine which page number visitor is currently on
+                                if (!isset($_GET['page'])) {
+                                    $page = 1;
+                                } else {
+                                    $page = $_GET['page'];
+                                }
+
+                                // determine the sql LIMIT starting number for the results on the displaying page
+                                $this_page_first_result = ($page - 1) * $results_per_page;
+
+
+                                if (isset($_GET['category'])) {
+                                    $stmt = $conn->prepare('SELECT * FROM products WHERE category_id = :catid LIMIT ' . $this_page_first_result . ',' .  $results_per_page);
                                     $stmt->execute(['catid' => $catid]);
                                 } else {
-                                    $stmt = $conn->prepare("SELECT * FROM products");
+                                    $stmt = $conn->prepare('SELECT * FROM products LIMIT ' . $this_page_first_result . ',' .  $results_per_page);
                                     $stmt->execute();
                                 }
 
@@ -150,10 +185,19 @@ if (isset($_GET['category'])) {
 
                         </div>
                         <div class="product__pagination">
-                            <a href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                            <?php
+                            // display the links to the pages
+                            for ($page = 1; $page <= $number_of_pages; $page++) {
+
+                                if (isset($_GET['category'])) {
+                                    $category = $_GET['category'];
+                                    echo '<a href="category.php?category='.$category.'&page=' . $page . '">' . $page . '</a> ';
+                                } else {
+                                    echo '<a href="category.php?page=' . $page . '">' . $page . '</a> ';
+                                }
+                                
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

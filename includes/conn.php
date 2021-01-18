@@ -2,7 +2,6 @@
 
 class Database
 {
-
 	private $server = "mysql:host=localhost;dbname=ttt";
 	private $username = "root";
 	private $password = "";
