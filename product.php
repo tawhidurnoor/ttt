@@ -43,7 +43,7 @@ if ($product['date_view'] == $now) {
 
         <style>
             .link_style {
-                color: #3e5372 !important;
+                color: #023246 !important;
             }
         </style>
 

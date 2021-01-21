@@ -37,11 +37,11 @@
 										echo '<div class="col-lg-4 col-md-6 col-sm-6">';
 										echo '	<div class="product__item">';
 										echo '		<div class="product__item__pic set-bg" data-setbg="' . $image . '">';
-										echo '			<ul class="product__item__pic__hover">';
+										echo '			<ul class="product__item__pic__hover"> <!--';
 										echo '				<li><a href="#"><i class="fa fa-heart"></i></a></li>';
 										echo '				<li><a href="#"><i class="fa fa-retweet"></i></a></li>';
 										echo '				<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>';
-										echo '			</ul>';
+										echo '			</ul> -->';
 										echo '		</div>';
 										echo '		<div class="product__item__text">';
 										echo '			<h6><a href="product.php?product=' . $row['slug'] . '">' . $highlighted . '</a></h6>';
