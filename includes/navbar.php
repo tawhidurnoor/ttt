@@ -203,10 +203,12 @@
                 <div class="hero__search">
                     <div class="hero__search__form">
                         <form method="POST" action="search.php">
+                            <!--
                             <div class="hero__search__categories">
                                 All Categories
                                 <span class="arrow_carrot-down"></span>
                             </div>
+                            -->
                             <input type="text" id="navbar-search-input" name="keyword" placeholder="What do yo u need?"
                                 required>
                             <button type="submit" class="site-btn">SEARCH</button>

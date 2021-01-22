@@ -21,25 +21,12 @@
 <script src="bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<!-- CK Editor -->
-<script src="bower_components/ckeditor/ckeditor.js"></script>
 <script>
 $(document).ready(function() {
     // Datatable
     $('#example1').DataTable()
 } );
 
-$(function() {
-    //CK Editor
-    CKEDITOR.replace('editor1')
-});
-</script>
-<!--Magnify -->
-<script src="magnify/magnify.min.js"></script>
-<script>
-$(function() {
-    $('.zoom').magnify();
-});
 </script>
 <!-- Custom Scripts -->
 <script>

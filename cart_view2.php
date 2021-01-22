@@ -35,11 +35,13 @@
             <div class="col-lg-6">
                 <div class="shoping__continue">
                     <div class="shoping__discount">
+                        <!--
                         <h5>Discount Codes</h5>
                         <form action="#">
                             <input type="text" placeholder="Enter your coupon code">
                             <button type="submit" class="site-btn">APPLY COUPON</button>
                         </form>
+                        -->
                     </div>
                 </div>
             </div>
@@ -55,64 +57,7 @@
 
 <?php include 'includes/scripts.php'; ?>
 
-
-
-
-
-
-
-<body class="hold-transition skin-blue layout-top-nav">
-    <div class="wrapper">
-
-        <?php include 'includes/navbar.php'; ?>
-
-        <div class="content-wrapper">
-            <div class="container">
-
-                <!-- Main content -->
-                <section class="content">
-                    <div class="row shopping-cart">
-                        <div class="col-sm-12">
-                            <div class="title">YOUR CART</div>
-                            <div class="box box-solid">
-                                <div class="box-body">
-                                    <table class="table table-borderless table-responsive">
-                                        <thead>
-                                            <th></th>
-                                            <th>Photo</th>
-                                            <th>Name</th>
-                                            <th>Price</th>
-                                            <th width="20%">Quantity</th>
-                                            <th>Subtotal</th>
-                                        </thead>
-                                        <tbody id="tbody">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <?php
-                            if (isset($_SESSION['user'])) {
-                                echo "
-	        					<div id='paypal-button'></div>
-	        				";
-                            } else {
-                                echo "
-	        					<strong>You need to <a href='login.php'>Login</a> to checkout.</strong><br>
-	        				";
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </section>
-
-            </div>
-        </div>
-        <?php $pdo->close(); ?>
-        <?php include 'includes/footer.php'; ?>
-    </div>
-
-    <?php include 'includes/scripts.php'; ?>
-    <script>
+<script>
         var total = 0;
         $(function() {
             $(document).on('click', '.cart_delete', function(e) {
