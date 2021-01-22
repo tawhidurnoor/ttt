@@ -67,8 +67,7 @@ if (isset($_SESSION['user'])) {
 			$image = (!empty($product['photo'])) ? 'images/' . $product['photo'] : 'images/noimage.jpg';
 			$subtotal = $product['price'] * $row['quantity'];
 			$total += $subtotal;
-			$output .= "
-					<tr>
+			$output .= "<tr>
 						<td><button type='button' data-id='" . $row['productid'] . "' class='btn btn-danger btn-flat cart_delete'><i class='fa fa-remove'></i></button></td>
 						<td><img src='" . $image . "' width='30px' height='30px'></td>
 						<td>" . $product['name'] . "</td>
@@ -84,8 +83,7 @@ if (isset($_SESSION['user'])) {
 				            </span>
 						</td>
 						<td>&#36; " . number_format($subtotal, 2) . "</td>
-					</tr>
-				";
+					</tr>";
 		}
 
 		$output .= "
