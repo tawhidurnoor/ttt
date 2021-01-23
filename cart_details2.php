@@ -22,7 +22,7 @@ if (isset($_SESSION['user'])) {
 	}
 	try {
 		$total = 0;
-		$stmt = $conn->prepare("SELECT *, cart.id AS cartid, products.name AS prodname FROM cart LEFT JOIN products ON products.id=cart.product_id WHERE user_id=:user");
+		$stmt = $conn->prepare("SELECT *, cart.id AS cartid, products.name AS prodname, products.id AS productid FROM cart LEFT JOIN products ON products.id=cart.product_id WHERE user_id=:user");
 		$stmt->execute(['user' => $user['id']]);
 		foreach ($stmt as $row) {
 			$image = (!empty($row['photo'])) ? 'images/' . $row['photo'] : 'images/noimage.jpg';
@@ -40,8 +40,10 @@ if (isset($_SESSION['user'])) {
 							<td class="shoping__cart__quantity">
 								<div class="quantity">
 									<div class="pro-qty">
+										<span class="dec qtybtn" data-id="'.$row['productid'].'">-</span>
 										<input type="text" value="' . $row['quantity'] . '" id="qty_' . $row['cartid'] . '" readonly>
-									</div>
+										<span class="inc qtybtn" data-id="'.$row['productid'].'">+</span>
+									</div>									
 								</div>
 							</td>
 							<td class="shoping__cart__total">
