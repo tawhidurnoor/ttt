@@ -107,12 +107,13 @@ if (isset($_GET['category'])) {
                       <th>Description</th>
                       <th>Price</th>
                       <th>Views Today</th>
+                      <th>Status</th>
                       <th>Tools</th>
                     </thead>
                     <tbody>
                       <?php
                       $conn = $pdo->open();
-
+                      
                       try {
                         $now = date('Y-m-d');
                         $stmt = $conn->prepare("SELECT * FROM products $where");
@@ -130,6 +131,12 @@ if (isset($_GET['category'])) {
                             <td><a href='#description' data-toggle='modal' class='mb-2 mr-2 btn btn-info desc' data-id='" . $row['id'] . "'><i class='fas fa-eye'></i> View</a></td>
                             <td>‎৳ " . number_format($row['price'], 2) . "</td>
                             <td>" . $counter . "</td>
+                            <td>
+                              <select name='' id=''>
+                                <option value='Avaliable'>Avaliable</option>
+                                <option value='Stock_out'>Stock Out</option>
+                              </select>
+                            </td>
                             <td>
                               <button class='mb-2 mr-2 btn btn-success edit' data-id='" . $row['id'] . "'><i class='fas fa-pencil-alt'></i> Edit</button>
                               <button class='mb-2 mr-2 btn btn-danger delete' data-id='" . $row['id'] . "'><i class='fa fa-trash'></i> Delete</button>
