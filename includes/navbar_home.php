@@ -73,6 +73,19 @@
 </div>
 <!-- Humberger End (Mobile view) -->
 
+<style>
+    .navbarfxd {
+        overflow: hidden;
+        position: fixed;
+        /* Set the navbar to fixed position */
+        top: 0;
+        /* Position the navbar at the top of the page */
+        width: 100%;
+        /* Full width */
+        margin-bottom: 30px;
+    }
+</style>
+
 <!-- Header Section Begin -->
 <header class="header">
     <div class="header__top">

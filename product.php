@@ -107,7 +107,7 @@ if ($product['date_view'] == $now) {
                                     </div>
                                 </div>
                                 <input type="hidden" value="<?php echo $product['prodid']; ?>" name="id">
-                                <button type="submit" class="primary-btn" style="border: 0px;"><i class="fa fa-shopping-cart"></i> ADD TO
+                                <button type="submit" class="primary-btn" style="border: 0px;background: #044e6d"><i class="fa fa-shopping-cart"></i> ADD TO
                                     CART</button>
                                 <!--<a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>-->
                             </form>
@@ -230,6 +230,41 @@ if ($product['date_view'] == $now) {
 
         });
     </script>
+
+    <script>
+
+        'use strict';
+
+        (function($) {
+
+            /*-------------------
+		Quantity change
+    --------------------- */
+            
+            var proQty = $('.pro-qty');
+            proQty.prepend('<span class="dec qtybtn">-</span>');
+            proQty.append('<span class="inc qtybtn">+</span>');
+            proQty.on('click', '.qtybtn', function () {
+                var $button = $(this);
+                var oldValue = $button.parent().find('input').val();
+                if ($button.hasClass('inc')) {
+                    var newVal = parseFloat(oldValue) + 1;
+                } else {
+                    // Don't allow decrementing below zero
+                    if (oldValue > 0) {
+                        var newVal = parseFloat(oldValue) - 1;
+                    } else {
+                        newVal = 0;
+                    }
+                }
+                $button.parent().find('input').val(newVal);
+            });
+            
+
+        })(jQuery);
+    </script>
+
+
 </body>
 
 </html>
