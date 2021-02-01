@@ -44,17 +44,8 @@
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
             <li class="active"><a href="./">Home</a></li>
-            <li><a href="./category.php">Shop</a></li>
-            <li><a href="#">Pages</a>
-                <ul class="header__menu__dropdown">
-                    <li><a href="./shop-details.html">Shop Details</a></li>
-                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                    <li><a href="./checkout.html">Check Out</a></li>
-                    <li><a href="./blog-details.html">Blog Details</a></li>
-                </ul>
-            </li>
-            <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="category.php">Shop</a></li>
+            <li><a href="contact.php">Contact</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -131,28 +122,20 @@
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
-                    <ul>
-                        <li class="active"><a href="./">Home</a></li>
-                        <li><a href="./category.php">Shop</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="header__menu__dropdown">
-                                <li><a href="./shop-details.html">Shop Details</a></li>
-                                <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                <li><a href="./checkout.html">Check Out</a></li>
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
-                    </ul>
+                    <center>
+                        <ul>
+                            <li class="active"><a href="./">Home</a></li>
+                            <li><a href="category.php">Shop</a></li>
+                            <li><a href="contact.php">Contact</a></li>
+                        </ul>
+                    </center>
                 </nav>
             </div>
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>0</span></a></li>
-                        <li><a href="cart_view.php"><i class="fa fa-shopping-bag"></i><span
-                                    class="cart_count"></span></a></li>
+                        <li><a href="cart_view.php"><i class="fa fa-shopping-bag"></i><span class="cart_count"></span></a></li>
                     </ul>
                     <!--
           <div class="header__cart__price">item: <span>$150.00</span></div>
@@ -209,8 +192,7 @@
                                 <span class="arrow_carrot-down"></span>
                             </div>
                             -->
-                            <input type="text" id="navbar-search-input" name="keyword" placeholder="What do yo u need?"
-                                required>
+                            <input type="text" id="navbar-search-input" name="keyword" placeholder="What do yo u need?" required>
                             <button type="submit" class="site-btn">SEARCH</button>
                         </form>
                     </div>
@@ -227,12 +209,9 @@
 
 
 
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-                    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-                    integrity="sha256-fzFFyH01cBVPYzl16KT40wqjhgPtq6FFUB6ckN2+GGw=" crossorigin="anonymous"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"
-                    integrity="sha256-4sETKhh3aSyi6NRiA+qunPaTawqSMDQca/xLWu27Hg4=" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha256-fzFFyH01cBVPYzl16KT40wqjhgPtq6FFUB6ckN2+GGw=" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js" integrity="sha256-4sETKhh3aSyi6NRiA+qunPaTawqSMDQca/xLWu27Hg4=" crossorigin="anonymous"></script>
                 <script src="slider/js/script.js"></script>
 
                 <!-- =====Old Slider Below===== -->

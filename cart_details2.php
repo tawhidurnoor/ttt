@@ -79,7 +79,7 @@ if (isset($_SESSION['user'])) {
 			$output .= '<tr>
 							<td class="shoping__cart__item">
 								<img class="img-responsive" width="100px" src="' . $image . '" alt="">
-								<h5><a href="product.php?product=' . $row['slug'] . '">' . $row['prodname'] . '</a></h5>
+								<h5><a href="product.php?product=' . $product['slug'] . '">' . $product['prodname'] . '</a></h5>
 							</td>
 							<td class="shoping__cart__price">
 								&#2547; ' . number_format($product['price'], 2) . '
